@@ -62,6 +62,7 @@ export const FeedbackForm = () => {
       try {
         await submitFeedback({ rating, comment });
         setStatus("success");
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         setStatus("error");
       }
