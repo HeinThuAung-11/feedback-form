@@ -22,7 +22,7 @@ const StarIcon = ({ filled }: { filled: boolean }) => {
   );
 };
 const StarList = [1, 2, 3, 4, 5] as const;
-export const StarRatings = ({ rating, onRatingChange, disable = false }: starRatingProps) => {
+export const StarRatings = ({ rating, errors, onRatingChange, disable = false }: starRatingProps) => {
   const [hoverStar, setHoverStar] = useState<number | null>(null);
   const displayValue = hoverStar ?? rating;
 
@@ -35,25 +35,32 @@ export const StarRatings = ({ rating, onRatingChange, disable = false }: starRat
   }, []);
 
   return (
-    <div className="flex gap-1">
-      {StarList.map((star) => {
-        const isFilled = star <= displayValue;
-        const isSelected = star === rating;
-        return (
-          <button
-            key={star}
-            className={`${isFilled ? "text-yellow-400" : "text-gray-500"}`}
-            type="button"
-            role="radio"
-            aria-checked={isSelected}
-            disabled={disable}
-            onMouseEnter={() => handleMouseEnter(star)}
-            onMouseLeave={handleMouseLeave}
-            onClick={() => onRatingChange(star)}>
-            <StarIcon filled={isFilled} />
-          </button>
-        );
-      })}
-    </div>
+    <>
+      <div className="flex gap-1">
+        {StarList.map((star) => {
+          const isFilled = star <= displayValue;
+          const isSelected = star === rating;
+          return (
+            <button
+              key={star}
+              className={`${isFilled ? "text-yellow-400" : "text-gray-500"}`}
+              type="button"
+              role="radio"
+              aria-checked={isSelected}
+              disabled={disable}
+              onMouseEnter={() => handleMouseEnter(star)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => onRatingChange(star)}>
+              <StarIcon filled={isFilled} />
+            </button>
+          );
+        })}
+      </div>
+      {errors.rating && (
+        <p role="alert" className="mt-1.5 text-sm text-red-600">
+          {errors.rating}
+        </p>
+      )}
+    </>
   );
 };
