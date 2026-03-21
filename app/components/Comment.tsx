@@ -9,7 +9,7 @@ export const Comment = ({
   MAX_COMMENT_CHAR,
 }: CommentProps) => {
   const charCount = comment.trim().length;
-  const hasCharReachedLimit = MAX_COMMENT_CHAR - 50;
+  const hasCharReachedLimit = charCount > MAX_COMMENT_CHAR - 50;
   const charCountColor = hasCharReachedLimit ? "text-red-700" : "text-black";
   return (
     <div>
