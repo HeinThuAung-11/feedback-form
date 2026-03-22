@@ -81,7 +81,7 @@ export const FeedbackForm = () => {
         <p className="text-md text-gray-500">We would love to hear from you.</p>
         <h6 className="text-md text-gray-800">Rating</h6>
         <div ref={ratingRef} tabIndex={-1}>
-          <StarRatings rating={rating} errors={errors} onRatingChange={handleRatingChange} disable={false} />
+          <StarRatings rating={rating} errors={errors} onRatingChange={handleRatingChange} disable={isLoading} />
         </div>
         <Comment
           comment={comment}
